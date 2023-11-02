@@ -1,20 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { CssBaseline, CssVarsProvider, StyledEngineProvider } from '@mui/joy';
 import { DashboardPage } from './pages';
 import reportWebVitals from './reportWebVitals';
 import '@fontsource/inter';
 import './index.css';
 
+const client = new QueryClient();
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <CssBaseline />
-    <StyledEngineProvider injectFirst>
-      <CssVarsProvider defaultMode="dark">
-        <DashboardPage />
-      </CssVarsProvider>
-    </StyledEngineProvider>
+    <QueryClientProvider client={client}>
+      <StyledEngineProvider injectFirst>
+        <CssVarsProvider defaultMode="dark">
+          <DashboardPage />
+        </CssVarsProvider>
+      </StyledEngineProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 );
 
