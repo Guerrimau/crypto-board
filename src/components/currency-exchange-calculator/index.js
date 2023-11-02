@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Input, Option, Select, Sheet, Stack, Typography } from '@mui/joy'
+import { calculateExchange } from '../../utils';
 
 const CurrencyExchangeCalculator = ({ cryptoValues }) => {
   const [formValues, setFormValues] = useState({
@@ -8,32 +9,40 @@ const CurrencyExchangeCalculator = ({ cryptoValues }) => {
     currencyType: "USD",
     cryptoCurrencyType: "ETH"
   });
+  const lastUpdatedField = useRef(null);
 
   const onCurrencyChange = (e) => {
-    const field = e.target.name;
-    const newValue = e.target.value;
-    setFormValues(prev => calculateExchange(field, newValue, prev));
+    const updatedField = {
+      field: e.target.name,
+      newValue: e.target.value
+    }
+    lastUpdatedField.current = updatedField.field;
+    setFormValues(prev => calculateExchange(updatedField, prev, cryptoValues));
   }
 
   const onSelectCurrency = (e, field) => {
+    const updatedField = {
+      field: "currency",
+      newValue: formValues.currency
+    }
     setFormValues(prev => ({
       ...prev,
       [field]: e.target?.textContent
     }));
+    setFormValues(prev => calculateExchange(updatedField, prev, cryptoValues))
   }
 
-  const calculateExchange = (field, newValue, prev) => {
-    const { currencyType, cryptoCurrencyType } = prev;
-    const equivalence = cryptoValues?.[cryptoCurrencyType]?.[currencyType];
-    
-    const calculatedField = field === "currency" ? "crytoCurrency" : "currency";
-
-    return {
-      ...prev,
-      [field]: newValue,
-      [calculatedField]: field === "currency" ? newValue / equivalence : newValue * equivalence
+  const refreshValues = () => {
+    const updatedField = {
+      field: lastUpdatedField.current,
+      newValue: lastUpdatedField.current === "currency" ? formValues.currency : formValues.crytoCurrency
     }
+    setFormValues(prev => calculateExchange(updatedField, prev, cryptoValues));
   }
+
+  useEffect(() => {
+    refreshValues();
+  }, [cryptoValues]);
 
   return (
     <Sheet
@@ -48,6 +57,7 @@ const CurrencyExchangeCalculator = ({ cryptoValues }) => {
         <Typography>Exchange Calculator</Typography>
         <Stack direction="row" spacing={1}>
           <Input
+            type="number"
             variant="outlined"
             name="currency"
             value={formValues.currency}
@@ -61,6 +71,7 @@ const CurrencyExchangeCalculator = ({ cryptoValues }) => {
         </Stack>
         <Stack direction="row" spacing={1}>
           <Input
+            type="number"
             variant="outlined"
             name="crytoCurrency"
             value={formValues.crytoCurrency}
