@@ -3,8 +3,6 @@ import { Input, Option, Select, Sheet, Stack, Typography } from '@mui/joy'
 import { CURRENCIES } from '../../constants'
 
 const CurrencyExchangeCalculator = () => {
-
-
   return (
     <Sheet
       component="section"
@@ -19,21 +17,13 @@ const CurrencyExchangeCalculator = () => {
         <Stack direction="row" spacing={1}>
           <Input variant="outlined" />
           <Select sx={{ width: "100px" }}>
-            {CURRENCIES.map(currency => {
-              return (
-                <Option value={currency}>{currency}</Option>
-              )
-            })}
+            {CURRENCIES.map(currency => <Option value={currency}>{currency}</Option>)}
           </Select>
         </Stack>
         <Stack direction="row" spacing={1}>
           <Input variant="outlined" />
           <Select sx={{ width: "100px" }}>
-            {CURRENCIES.map(currency => {
-              return (
-                <Option value={currency}>{currency}</Option>
-              )
-            })}
+            {CURRENCIES.map(currency => <Option value={currency}>{currency}</Option>)}
           </Select>
         </Stack>
       </Stack>

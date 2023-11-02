@@ -1,6 +1,6 @@
 import React from 'react';
 import { Sheet, Stack, Table, Typography } from '@mui/joy';
-import { CurrencyExchangeCalculator } from '../../components';
+import { CurrencyExchangeCalculator, CryptoValuesChart, CryptoValuesTable } from '../../components';
 
 const DashboardPage = () => {
   return (
@@ -8,10 +8,7 @@ const DashboardPage = () => {
       <Typography level="h1">CryptoCurrency Dashboard</Typography>
 
       <Stack direction={"row"} gap={3}>
-        <Sheet component="section" variant="outlined" sx={{ flex: "2 3", borderRadius: "sm", p: 1 }}>
-          ETC and BTC Charts
-        </Sheet>
-
+        <CryptoValuesChart />
         <CurrencyExchangeCalculator />
       </Stack>
 
@@ -23,47 +20,11 @@ const DashboardPage = () => {
       <Stack direction="row" gap={3}>
         <Stack spacing={1}>
           <Typography>Bitcoin - BTC</Typography>
-          <Sheet variant="outlined" sx={{ borderRadius: "sm", p: 1 }}>
-            <Table>
-              <thead>
-                <tr>
-                  <th style={{ width: '40%' }}>Time</th>
-                  <th>USD</th>
-                  <th>EUR</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>2034-03-34 12:30:30</td>
-                  <td>40</td>
-                  <td>60</td>
-                </tr>
-              </tbody>
-            </Table>
-          </Sheet>
+          <CryptoValuesTable />
         </Stack>
         <Stack spacing={1}>
           <Typography>Btherium - ETH</Typography>
-          <Sheet variant="outlined" sx={{ borderRadius: "sm", p: 1 }}>
-            <Table>
-              <thead>
-                <tr>
-                  <th style={{ width: '40%' }}>Time</th>
-                  <th>USD</th>
-                  <th>EUR</th>
-                  <th>BTC</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>2034-03-34 12:30:30</td>
-                  <td>40</td>
-                  <td>60</td>
-                  <td>0.00054</td>
-                </tr>
-              </tbody>
-            </Table>
-          </Sheet>
+          <CryptoValuesTable />
         </Stack>
       </Stack>
     </Stack>

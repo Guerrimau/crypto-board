@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { CssBaseline, CssVarsProvider, StyledEngineProvider } from '@mui/joy';
-import '@fontsource/inter';
+import { DashboardPage } from './pages';
 import reportWebVitals from './reportWebVitals';
-import DashboardPage from './pages/dashboard';
+import '@fontsource/inter';
 import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
