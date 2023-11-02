@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { CssBaseline, CssVarsProvider, StyledEngineProvider } from '@mui/joy';
 import '@fontsource/inter';
 import reportWebVitals from './reportWebVitals';
 import DashboardPage from './pages/dashboard';
@@ -8,7 +9,12 @@ import './index.css';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <DashboardPage />
+    <CssBaseline />
+    <StyledEngineProvider injectFirst>
+      <CssVarsProvider defaultMode="dark">
+        <DashboardPage />
+      </CssVarsProvider>
+    </StyledEngineProvider>
   </React.StrictMode>
 );
 
