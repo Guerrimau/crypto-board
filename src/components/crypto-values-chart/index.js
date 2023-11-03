@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sheet } from '@mui/joy';
+import { Sheet, Skeleton } from '@mui/joy';
 import { Chart } from "react-charts";
 import { UNIX_TIMESTAMP } from '../../constants';
 
@@ -28,7 +28,7 @@ const CryptoValuesChart = ({ historicalValues }) => {
   const btcHistoricalValues = btcHistoricalValuesRaw?.Data?.Data || [];
   const ethHistoricalValues = ethHistoricalValuesRaw?.Data?.Data || [];
 
-  if(btcLoading || ethLoading) return null;
+  if(btcLoading || ethLoading) return <ChartSkeleton />;
 
   const data = [
     {
@@ -37,7 +37,7 @@ const CryptoValuesChart = ({ historicalValues }) => {
         date: item.time,
         amount: item.open
       }))
-    },{
+    }, {
       label: "Ethereum",
       data: ethHistoricalValues.map(item => ({
         date: item.time,
@@ -46,14 +46,40 @@ const CryptoValuesChart = ({ historicalValues }) => {
     }
   ]
 
-  
+
   return (
     <Sheet
       component="section"
-      variant="outlined" sx={{ flex: "2 3", borderRadius: "sm", p: 1 }}>
-      <Chart options={{ data, primaryAxis, secondaryAxes, dark: true }} />
+      variant="outlined" sx={{ flex: "2 3", borderRadius: "sm", overflow: "hidden" }}>
+      <Chart
+        options={{
+          data,
+          primaryAxis,
+          secondaryAxes,
+          dark: true,
+        }} />
     </Sheet>
   )
+}
+
+const ChartSkeleton = () => {
+  return (
+    <Sheet
+      component="section"
+      variant="outlined"
+      sx={{
+        borderRadius: "sm",
+        p: 2,
+        width: "900px"
+      }}>
+      <Skeleton sx={contentDimensions} />
+    </Sheet>
+  )
+}
+
+const contentDimensions = {
+  width: "calc(100% - 32px)",
+  height: "calc(100% - 32px)"
 }
 
 export default CryptoValuesChart

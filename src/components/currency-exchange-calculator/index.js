@@ -48,40 +48,43 @@ const CurrencyExchangeCalculator = ({ cryptoValues }) => {
     <Sheet
       component="section"
       variant="outlined"
-      sx={{
-        flex: "1",
-        borderRadius: "sm",
-        p: 2,
-      }}>
-      <Stack spacing={1}>
+      sx={{ borderRadius: "sm", p: 2 }}>
+      <Stack spacing={1} height="100%">
         <Typography>Exchange Calculator</Typography>
-        <Stack direction="row" spacing={1}>
-          <Input
-            type="number"
-            variant="outlined"
-            name="currency"
-            value={formValues.currency}
-            onChange={onCurrencyChange} />
-          <Select
-            sx={{ width: "100px" }}
-            value={formValues.currencyType}
-            onChange={e => onSelectCurrency(e, "currencyType")}>
-            {["USD", "EUR"].map(currency => <Option value={currency}>{currency}</Option>)}
-          </Select>
-        </Stack>
-        <Stack direction="row" spacing={1}>
-          <Input
-            type="number"
-            variant="outlined"
-            name="crytoCurrency"
-            value={formValues.crytoCurrency}
-            onChange={onCurrencyChange} />
-          <Select
-            sx={{ width: "100px" }}
-            value={formValues.cryptoCurrencyType}
-            onChange={e => onSelectCurrency(e, "cryptoCurrencyType")}>
-            {["BTC", "ETH"].map(currency => <Option value={currency}>{currency}</Option>)}
-          </Select>
+        <Stack
+          spacing={1}
+          paddingBottom="24px"
+          m="auto !important"
+          alignItems="center">
+          <Stack direction="row" spacing={1}>
+            <Input
+              type="number"
+              variant="outlined"
+              name="currency"
+              value={formValues.currency}
+              onChange={onCurrencyChange} />
+            <Select
+              sx={{ width: "100px" }}
+              value={formValues.currencyType}
+              onChange={e => onSelectCurrency(e, "currencyType")}>
+              {["USD", "EUR"].map(currency => <Option value={currency}>{currency}</Option>)}
+            </Select>
+          </Stack>
+          <Typography level="h4">=</Typography>
+          <Stack direction="row" spacing={1}>
+            <Input
+              type="number"
+              variant="outlined"
+              name="crytoCurrency"
+              value={formValues.crytoCurrency}
+              onChange={onCurrencyChange} />
+            <Select
+              sx={{ width: "100px" }}
+              value={formValues.cryptoCurrencyType}
+              onChange={e => onSelectCurrency(e, "cryptoCurrencyType")}>
+              {["BTC", "ETH"].map(currency => <Option value={currency}>{currency}</Option>)}
+            </Select>
+          </Stack>
         </Stack>
       </Stack>
     </Sheet>
