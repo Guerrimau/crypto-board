@@ -1,8 +1,10 @@
 import React from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useQueries, useQuery } from '@tanstack/react-query';
 import { Stack, Typography } from '@mui/joy';
 import { CurrencyExchangeCalculator, CryptoValuesChart, CryptoValuesTable } from '../../components';
 import cryptoCompareApi from '../../services/crypto-compare-api';
+
+const cryptos = ["BTC", "ETH"];
 
 const DashboardPage = () => {
   const { data: cryptoValues, isLoading: cryptoValuesLoading } = useQuery({
@@ -11,12 +13,20 @@ const DashboardPage = () => {
     refetchInterval: 10000,
   });
 
+  const historicalValues = useQueries({
+    queries: cryptos.map(crypto => ({
+      queryKey: ["historicalValues", crypto],
+      queryFn: () => cryptoCompareApi.getHistoricalValues(crypto),
+      refetchInterval: 10000,
+    }))
+  });
+
   return (
     <Stack component="main" width="1000px" spacing={3}>
       <Typography level="h1">CryptoCurrency Dashboard</Typography>
 
-      <Stack direction={"row"} gap={3}>
-        <CryptoValuesChart />
+      <Stack direction="row" gap={3} height="350px">
+        <CryptoValuesChart historicalValues={historicalValues} />
         <CurrencyExchangeCalculator cryptoValues={cryptoValues} />
       </Stack>
 
