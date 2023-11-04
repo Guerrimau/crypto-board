@@ -25,7 +25,7 @@ const DashboardPage = () => {
     <Stack component="main" width="1000px" spacing={3}>
       <Typography level="h1">CryptoCurrency Dashboard</Typography>
 
-      <Stack direction="row" height="350px" gap={2}>
+      <Stack direction="row" height="350px" spacing={3}>
         <CryptoValuesChart historicalValues={historicalValues} />
         <CurrencyExchangeCalculator cryptoValues={cryptoValues} />
       </Stack>

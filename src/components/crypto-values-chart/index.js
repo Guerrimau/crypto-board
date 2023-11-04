@@ -50,7 +50,7 @@ const CryptoValuesChart = ({ historicalValues }) => {
   return (
     <Sheet
       component="section"
-      variant="outlined" sx={{ flex: "2 3", borderRadius: "sm", overflow: "hidden" }}>
+      variant="outlined" sx={{ width: "600px", borderRadius: "sm", overflow: "hidden" }}>
       <Chart
         options={{
           data,
@@ -68,9 +68,9 @@ const ChartSkeleton = () => {
       component="section"
       variant="outlined"
       sx={{
+        width: "600px",
         borderRadius: "sm",
         p: 2,
-        width: "900px"
       }}>
       <Skeleton sx={contentDimensions} />
     </Sheet>

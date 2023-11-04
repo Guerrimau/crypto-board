@@ -48,7 +48,7 @@ const CurrencyExchangeCalculator = ({ cryptoValues }) => {
     <Sheet
       component="section"
       variant="outlined"
-      sx={{ borderRadius: "sm", p: 2 }}>
+      sx={{ flex: 1, borderRadius: "sm", p: 2 }}>
       <Stack spacing={1} height="100%">
         <Typography>Exchange Calculator</Typography>
         <Stack
