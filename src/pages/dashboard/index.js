@@ -38,11 +38,15 @@ const DashboardPage = () => {
       <Stack direction="row" gap={3}>
         <Stack spacing={1}>
           <Typography>Bitcoin - BTC</Typography>
-          <CryptoValuesTable />
+          <CryptoValuesTable
+            currencies={["USD", "EUR"]}
+            currentValues={cryptoValues?.BTC} />
         </Stack>
         <Stack spacing={1}>
           <Typography>Etherium - ETH</Typography>
-          <CryptoValuesTable />
+          <CryptoValuesTable
+            currencies={["USD", "EUR", "BTC"]}
+            currentValues={cryptoValues?.ETH} />
         </Stack>
       </Stack>
     </Stack>
