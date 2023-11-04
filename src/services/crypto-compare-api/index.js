@@ -5,7 +5,7 @@ const getCryptoCurrencyValues = async () => {
 }
 
 const getHistoricalValues = async (crypto = "BTC") => {
-  const response = await fetch(`https://min-api.cryptocompare.com/data/v2/histominute?fsym=${crypto}&tsym=USD`);
+  const response = await fetch(`https://min-api.cryptocompare.com/data/v2/histominute?fsym=${crypto}&tsym=USD&limit=1000`);
   return response.json();
 }
 

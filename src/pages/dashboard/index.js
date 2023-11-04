@@ -1,7 +1,11 @@
 import React from 'react';
 import { useQueries, useQuery } from '@tanstack/react-query';
 import { Stack, Typography } from '@mui/joy';
-import { CurrencyExchangeCalculator, CryptoValuesChart, CryptoValuesTable } from '../../components';
+import {
+  CurrencyExchangeCalculator,
+  CryptoValuesChart,
+  CryptoValuesTable,
+} from '../../components';
 import cryptoCompareApi from '../../services/crypto-compare-api';
 import { CRYPTOS } from '../../constants';
 
