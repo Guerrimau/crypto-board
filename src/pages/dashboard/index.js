@@ -1,6 +1,6 @@
 import React from 'react';
 import { useQueries, useQuery } from '@tanstack/react-query';
-import { Stack, Typography } from '@mui/joy';
+import { Divider, Sheet, Stack, Typography } from '@mui/joy';
 import {
   CurrencyExchangeCalculator,
   CryptoValuesChart,
@@ -33,11 +33,14 @@ const DashboardPage = () => {
         <CryptoValuesChart historicalValues={historicalValues} />
         <CurrencyExchangeCalculator cryptoValues={cryptoValues} />
       </Stack>
-
-      <Stack direction="row" justifyContent="space-around">
-        <Typography level="h4">1 BTC = {cryptoValues?.BTC?.USD}</Typography>
-        <Typography level="h4">1 ETH = {cryptoValues?.ETH?.USD} USD</Typography>
-      </Stack>
+ 
+      <Sheet component="section" variant="outlined" sx={{ borderRadius: "sm", p: 1 }}>
+        <Stack direction="row" justifyContent="space-evenly">
+          <Typography level="h4">1 BTC = {cryptoValues?.BTC?.USD}</Typography>
+          <Divider orientation="vertical" />
+          <Typography level="h4">1 ETH = {cryptoValues?.ETH?.USD} USD</Typography>
+        </Stack>
+      </Sheet>
 
       <Stack direction="row" gap={3}>
         <Stack spacing={1}>
