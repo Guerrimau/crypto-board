@@ -18,6 +18,7 @@ const CryptoValuesChart = ({ historicalValues }) => {
   const secondaryAxes = React.useMemo(
     () => [
       {
+        max: 100000,
         getValue: (data) => data.amount,
         elementType: 'line',
       },
