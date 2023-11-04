@@ -20,6 +20,8 @@ code {
   height: 100%;
   width: 100%;
   padding-top: 50px;
+  padding-bottom: 50px;
+  overflow: auto;
 }
 
 input::-webkit-outer-spin-button,
