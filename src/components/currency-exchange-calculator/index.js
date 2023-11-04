@@ -48,41 +48,44 @@ const CurrencyExchangeCalculator = ({ cryptoValues }) => {
     <Sheet
       component="section"
       variant="outlined"
-      sx={{ flex: 1, borderRadius: "sm", p: 2 }}>
+      sx={{ borderRadius: "sm", p: 2, flex: 1 }}>
       <Stack spacing={1} height="100%">
         <Typography>Exchange Calculator</Typography>
         <Stack
           spacing={1}
           paddingBottom="24px"
+          width="100%"
           m="auto !important"
           alignItems="center">
-          <Stack direction="row" spacing={1}>
+          <Stack direction="row" gap={1} width="100%">
             <Input
               type="number"
               variant="outlined"
               name="currency"
+              sx={{ width: "70%" }}
               value={formValues.currency}
               onChange={onCurrencyChange} />
             <Select
-              sx={{ width: "100px" }}
+              sx={{ width: "30%" }}
               value={formValues.currencyType}
               onChange={e => onSelectCurrency(e, "currencyType")}>
               {["USD", "EUR"].map(currency => <Option value={currency}>{currency}</Option>)}
             </Select>
           </Stack>
           <Typography level="h4">=</Typography>
-          <Stack direction="row" spacing={1}>
+          <Stack direction="row" gap={1} width="100%">
             <Input
               type="number"
               variant="outlined"
               name="crytoCurrency"
+              sx={{ width: "70%" }}
               value={formValues.crytoCurrency}
               onChange={onCurrencyChange} />
             <Select
-              sx={{ width: "100px" }}
+              sx={{ width: "30%" }}
               value={formValues.cryptoCurrencyType}
               onChange={e => onSelectCurrency(e, "cryptoCurrencyType")}>
-              {["BTC", "ETH"].map(currency => <Option value={currency}>{currency}</Option>)}
+              {["BTC", "ETH"].map(currency => <Option value={currency}>{currency}</Option>)} 
             </Select>
           </Stack>
         </Stack>
