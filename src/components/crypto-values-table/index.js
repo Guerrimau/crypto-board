@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Sheet, Table, Skeleton } from '@mui/joy'
+import { Sheet, Table } from '@mui/joy'
 
 const CryptoValuesTable = ({ currentValues, currencies = ["USD"] }) => {
   const [historicalValues, setHistoricalValues] = useState([]);

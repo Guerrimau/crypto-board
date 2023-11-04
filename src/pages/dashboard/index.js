@@ -3,18 +3,18 @@ import { useQueries, useQuery } from '@tanstack/react-query';
 import { Stack, Typography } from '@mui/joy';
 import { CurrencyExchangeCalculator, CryptoValuesChart, CryptoValuesTable } from '../../components';
 import cryptoCompareApi from '../../services/crypto-compare-api';
+import { CRYPTOS } from '../../constants';
 
-const cryptos = ["BTC", "ETH"];
 
 const DashboardPage = () => {
-  const { data: cryptoValues, isLoading: cryptoValuesLoading } = useQuery({
+  const { data: cryptoValues } = useQuery({
     queryKey: ["getCryptoValues"],
     queryFn: cryptoCompareApi.getCryptoCurrencyValues,
     refetchInterval: 10000,
   });
 
   const historicalValues = useQueries({
-    queries: cryptos.map(crypto => ({
+    queries: CRYPTOS.map(crypto => ({
       queryKey: ["historicalValues", crypto],
       queryFn: () => cryptoCompareApi.getHistoricalValues(crypto),
       refetchInterval: 10000,
